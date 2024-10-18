@@ -96,6 +96,9 @@ async function main() {
             document.querySelectorAll(".album").forEach(e => e.style.backgroundColor = "#323232");
             album.style.backgroundColor = "rgb(21,21,21)";
 
+
+            pause.firstChild.src = "pause.svg";
+
             selected = folder;
             if (!selected) {
                 console.error("Selected folder is undefined:", selected);
@@ -117,6 +120,9 @@ async function main() {
             for (const song of songs) {
                 const songN = song.replaceAll("%20", " ").replace("/", "").split("-")[0].split("Telegram/")[1];
                 const songA = song.replaceAll("%20", " ").replace("/", "").replace(".mp3", "").split("-")[1];
+
+
+                
 
                 const songBlock = document.createElement("div");
                 songBlock.className = "song";
@@ -154,7 +160,7 @@ async function main() {
                     currentSongIndex = songs.indexOf(song);
                     playMusic(song, true);
                     currentAudio.play();
-                    pause.firstChild.src = "playbtn.svg";
+                    pause.firstChild.src = "pause.svg";
                 });
             }
         });
@@ -206,10 +212,10 @@ function addControlEventListeners() {
             currentAudio.play().catch(error => {
                 console.error("Playback interrupted:", error);
             });
-            pause.firstChild.src = "playbtn.svg";
+            pause.firstChild.src = "pause.svg";
         } else {
             currentAudio.pause();
-            pause.firstChild.src = "pause.svg";
+            pause.firstChild.src = "playbtn.svg";
         }
     });
 
